@@ -7,7 +7,7 @@ After=basic.target network.target
 User=<%= scope.lookupvar('prometheus::blackbox_exporter::user') %>
 Group=<%= scope.lookupvar('prometheus::blackbox_exporter::group') %>
 ExecStart=<%= scope.lookupvar('prometheus::blackbox_exporter::bin_dir') %>/blackbox_exporter \
-  -config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %>
+  -config.file=<%= scope.lookupvar('prometheus::blackbox_exporter::config_dir')+'/blackbox.yaml' %>
   <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
