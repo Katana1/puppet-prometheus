@@ -80,7 +80,8 @@ class prometheus::blackbox_exporter::config(
     group   => $prometheus::blackbox_exporter::group,
     mode    => $prometheus::blackbox_exporter::config_mode,
     content => template('prometheus/blackbox_exporter.yaml.erb'),
-    requires => File[$prometheus::config_dir]
+    require => File[$prometheus::config_dir],
+    notify  => Service['blackbox_exporter'],
   }
 
 }
