@@ -73,4 +73,14 @@ class prometheus::blackbox_exporter::config(
     }
   }
 
+  file { 'blackbox.yaml':
+    ensure  => present,
+    path    => "${prometheus::config_dir}/blackbox.yaml",
+    owner   => $prometheus::blackbox_exporter::user,
+    group   => $prometheus::blackbox_exporter::group,
+    mode    => $prometheus::blackbox_exporter::config_mode,
+    content => template('prometheus/blackbox.yaml.erb'),
+    requires => File[$prometheus::config_dir]
+  }
+
 }
