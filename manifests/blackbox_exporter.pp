@@ -103,7 +103,6 @@ class prometheus::blackbox_exporter (
   validate_bool($manage_user)
   validate_bool($manage_service)
   validate_bool($restart_on_change)
-  validate_array($collectors)
 
   $notify_service = $restart_on_change ? {
     true    => Class['::prometheus::blackbox_exporter::run_service'],
