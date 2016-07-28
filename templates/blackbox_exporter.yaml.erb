@@ -1,4 +1,4 @@
 <% require 'yaml' %>
-<% my_config = { 'modules' => scope.lookupvar('::prometheus::blackbox_config::modules') } %>
+<% my_config = { 'modules' => scope.lookupvar('::prometheus::blackbox_exporter::modules') } %>
 <%= my_config.to_yaml %>
 
