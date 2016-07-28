@@ -129,7 +129,7 @@ class prometheus (
   $rule_files           = $::prometheus::params::rule_files,
   $scrape_configs       = $::prometheus::params::scrape_configs,
 ) inherits prometheus::params {
-  $real_download_url    = pick($download_url, "${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
+  $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   validate_bool($purge_config_dir)
   validate_bool($manage_user)
   validate_bool($manage_service)
