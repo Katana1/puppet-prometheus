@@ -25,6 +25,7 @@ class prometheus::params {
   $blackbox_exporter_download_extension = 'tar.gz'
   $blackbox_exporter_package_ensure = 'latest'
   $blackbox_exporter_package_name = 'blackbox_exporter'
+  $blackbox_exporter_extra_groups = []
   $alert_manager_download_url_base = 'https://github.com/prometheus/alertmanager/releases'
   $alert_manager_config_file = "${config_dir}/alertmanager.yaml"
   $alert_manager_global = { 'smtp_smarthost' =>'localhost:25', 'smtp_from'=>'alertmanager@localhost' }
