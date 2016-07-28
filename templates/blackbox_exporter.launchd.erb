@@ -19,7 +19,7 @@
 <% require 'shellwords' %>
 <% for extra_option in Shellwords.split(scope.lookupvar('prometheus::blackbox_exporter::extra_options')) %>
             <string><%= extra_option %></string>
-            <string>-config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %></string>
+            <string>-config.file=<%= scope.lookupvar('prometheus::blackbox_exporter::config_dir')+'/blackbox.yaml' %></string>
 <% end %>
         </array>
 </dict>

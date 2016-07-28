@@ -35,7 +35,7 @@ case "$1" in
         echo -n "Starting Prometheus blackbox exporter"
         ## Start daemon with startproc(8). If this fails
         ## the return value is set appropriately by startproc.
-        startproc $blackbox_exporter_BIN -config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %> <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %> >> "$LOG_FILE"
+        startproc $blackbox_exporter_BIN -config.file=<%= scope.lookupvar('prometheus::blackbox_exporter::config_dir')+'/blackbox.yaml' %> <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %> >> "$LOG_FILE"
 
         # Remember status and be verbose
         rc_status -v
