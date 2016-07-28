@@ -1,6 +1,8 @@
 # Class: prometheus::blackbox_exporter
 #
-# This module manages prometheus blackbox exporter
+# This module manages prometheus blackbox exporter installation and configuration
+# You are probably most interested in the *modules* param for configuring blackbox
+# probes.
 #
 # Parameters:
 #
@@ -66,6 +68,9 @@
 #
 #  [*init_style*]
 #  Service startup scripts style (e.g. rc, upstart or systemd)
+# 
+#  [*modules*]
+#  Declare the available probe modules for blackbox_exporter
 #
 # Actions:
 #
@@ -97,12 +102,14 @@ class prometheus::blackbox_exporter (
   $manage_service       = true,
   $restart_on_change    = true,
   $init_style           = $::prometheus::params::init_style,
+  $modules              = undef,
 ) inherits prometheus::params {
   $real_download_url    = pick($download_url, "${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
   validate_bool($purge_config_dir)
   validate_bool($manage_user)
   validate_bool($manage_service)
   validate_bool($restart_on_change)
+  validate_hash($modules)
 
   $notify_service = $restart_on_change ? {
     true    => Class['::prometheus::blackbox_exporter::run_service'],
