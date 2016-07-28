@@ -10,11 +10,7 @@ class prometheus::blackbox_exporter::install
     'url': {
       include staging
       $staging_file = "blackbox_exporter-${prometheus::blackbox_exporter::version}.${prometheus::blackbox_exporter::download_extension}"
-      if( versioncmp($::prometheus::blackbox_exporter::version, '0.12.0') == -1 ){
-        $binary = "${::staging::path}/blackbox_exporter"
-      } else {
-          $binary = "${::staging::path}/blackbox_exporter-${::prometheus::blackbox_exporter::version}.${::prometheus::blackbox_exporter::os}-${::prometheus::blackbox_exporter::arch}/blackbox_exporter"
-      }
+      $binary = "${::staging::path}/blackbox_exporter-${::prometheus::blackbox_exporter::version}.${::prometheus::blackbox_exporter::os}-${::prometheus::blackbox_exporter::arch}/blackbox_exporter"
       staging::file { $staging_file:
         source => $prometheus::blackbox_exporter::real_download_url,
       } ->
