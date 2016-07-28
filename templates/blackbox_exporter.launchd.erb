@@ -14,11 +14,12 @@
     <key>KeepAlive</key>         <true/>
     <key>ProgramArguments</key>
         <array>
-            <string><%= scope.lookupvar('prometheus::blackbox_exporter::bin_dir') %>/prometheus</string>
+            <string><%= scope.lookupvar('prometheus::blackbox_exporter::bin_dir') %>/blackbox_exporter</string>
             <string>agent</string>
 <% require 'shellwords' %>
 <% for extra_option in Shellwords.split(scope.lookupvar('prometheus::blackbox_exporter::extra_options')) %>
             <string><%= extra_option %></string>
+            <string>-config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %></string>
 <% end %>
         </array>
 </dict>

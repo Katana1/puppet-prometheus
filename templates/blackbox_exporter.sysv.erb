@@ -51,7 +51,8 @@ start() {
         [ -f $PID_FILE ] && rm $PID_FILE
         daemon --user=<%= scope.lookupvar('prometheus::blackbox_exporter::user') %> \
             --pidfile="$PID_FILE" \
-            "$DAEMON" <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %> >> "$LOG_FILE" &
+            "$DAEMON" <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %> \
+                    -config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %> >> "$LOG_FILE" &
         retcode=$?
         mkpidfile
         touch /var/lock/subsys/blackbox_exporter

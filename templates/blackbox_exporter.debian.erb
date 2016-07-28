@@ -18,7 +18,7 @@ DESC="Prometheus blackbox exporter"
 NAME=blackbox_exporter
 DAEMON=<%= scope.lookupvar('prometheus::blackbox_exporter::bin_dir') %>/$NAME
 PIDFILE=/var/run/$NAME/$NAME.pid
-DAEMON_ARGS="<%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %>"
+DAEMON_ARGS="-config.file=<%= scope.lookupvar('prometheus::::blackbox_exporter::config_dir')+'/blackbox.yaml' %> <%= scope.lookupvar('prometheus::blackbox_exporter::extra_options') %>"
 USER=<%= scope.lookupvar('prometheus::blackbox_exporter::user') %>
 SCRIPTNAME=/etc/init.d/$NAME
 
