@@ -79,7 +79,7 @@ class prometheus::blackbox_exporter::config(
     owner   => $prometheus::blackbox_exporter::user,
     group   => $prometheus::blackbox_exporter::group,
     mode    => $prometheus::blackbox_exporter::config_mode,
-    content => template('prometheus/blackbox.yaml.erb'),
+    content => template('prometheus/blackbox_exporter.yaml.erb'),
     requires => File[$prometheus::config_dir]
   }
 
