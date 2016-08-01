@@ -1,15 +1,12 @@
 class prometheus::consoles {
   # Not thrilling me to do it this way, since we also need to poke the config into prometheus.yaml
   include staging
-  staging::file { "prometheus-${prometheus::version}.${prometheus::download_extension}":
-    source => $prometheus::real_download_url,
-  } ->
-  file { "${::staging::path}/prometheus-${prometheus::version}":
-    ensure => directory,
-  } ->
+
+
   staging::extract { "prometheus-${prometheus::version}.${prometheus::download_extension}":
     target  => $::staging::path,
-    creates => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/prometheus",
+    creates => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/consoles",
+    require =>   File["${::staging::path}/prometheus-${prometheus::version}"]
   } ->
   file {
     "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/consoles":
