@@ -163,6 +163,6 @@ class prometheus (
 
   include prometheus::consoles
   # Cludge together extra arguments for launching prometheus server
-  $extra_options = "${extra_options} -web.console.templates=/etc/prometheus/consoles -web.console.libraries=/etc/prometheus/console_libraries"
+
 
 }
