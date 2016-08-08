@@ -22,7 +22,4 @@ class prometheus::consoles {
       target => "${::staging::path}/prometheus-${prometheus::version}.${prometheus::os}-${prometheus::arch}/console_libraries";
   }
 
-  # Cludge together extra arguments for launching prometheus server
-  $::prometheus::extra_options = "${::prometheus::extra_options} -web.console.templates=/etc/prometheus/consoles -web.console.libraries=/etc/prometheus/console_libraries"
-
 }
