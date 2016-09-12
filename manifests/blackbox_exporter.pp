@@ -111,9 +111,10 @@ class prometheus::blackbox_exporter (
   validate_bool($restart_on_change)
   validate_hash($modules)
 
-  $notify_service = $restart_on_change ? {
-    true    => Class['::prometheus::blackbox_exporter::run_service'],
-    default => undef,
+  if $restart_on_change and $manage_service {
+    $notify_service =  { notify => Class['::prometheus::blackbox_exporter::run_service'] }
+  } else {
+    $notify_service = { }
   }
 
   anchor {'blackbox_exporter_first': }
@@ -121,7 +122,7 @@ class prometheus::blackbox_exporter (
   class { '::prometheus::blackbox_exporter::install': } ->
   class { '::prometheus::blackbox_exporter::config':
     purge  => $purge_config_dir,
-    notify => $notify_service,
+    * => $notify_service,
   } ->
   class { '::prometheus::blackbox_exporter::run_service': } ->
   anchor {'blackbox_exporter_last': }

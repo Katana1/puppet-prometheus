@@ -81,7 +81,6 @@ class prometheus::blackbox_exporter::config(
     mode    => $prometheus::blackbox_exporter::config_mode,
     content => template('prometheus/blackbox_exporter.yaml.erb'),
     require => File[$prometheus::config_dir],
-    notify  => Service['blackbox_exporter'],
   }
 
 }
