@@ -25,7 +25,7 @@ class prometheus::blackbox_exporter::install
           mode  => '0555';
         "${::prometheus::blackbox_exporter::bin_dir}/blackbox_exporter":
           ensure => link,
-          notify => $::prometheus::blackbox_exporter::notify_service,
+          * => $::prometheus::blackbox_exporter::notify_service,
           target => $binary,
       }
     }
