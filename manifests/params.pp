@@ -14,7 +14,7 @@ class prometheus::params {
   $version = '1.0.1'
   $download_extension = 'tar.gz'
   $node_exporter_download_url_base = 'https://github.com/prometheus/node_exporter/releases'
-  $node_exporter_version = '0.13.0'
+  $node_exporter_version = '0.12.0'
   $node_exporter_download_extension = 'tar.gz'
   $node_exporter_collectors = ['diskstats','filesystem','loadavg','meminfo','netdev','stat,time']
   $node_exporter_package_ensure = 'latest'
